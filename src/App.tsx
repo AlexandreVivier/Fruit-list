@@ -41,7 +41,7 @@ export default function App() {
     fruitsAddCopy.push({ id, name });
     // 4 Mettre à jour le state fruits
     setFruits(fruitsAddCopy);
-    // 5 Remettre à neuf le state newFruit dans l'input
+    // 5 Remettre à neuf le state newFruit dans l'input.
     setNewFruit('');
   }
 
