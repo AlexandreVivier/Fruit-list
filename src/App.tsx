@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Fruit from './components/Fruit'
+import AddFruit from './components/AddFruit';
 import './App.css'
 
 export default function App() {
@@ -8,8 +10,6 @@ export default function App() {
     { id : 3, name: 'cerise' }
   ]);
 
-  // Second partie de state, destinée à l'ajout de fruit.
-  const [newFruit, setNewFruit] = useState('');
 
   const handleDelete = (id: number) => {
   // NE JAMAIS MODIFIER LE STATE DIRECTEMENT
@@ -23,40 +23,19 @@ export default function App() {
   setFruits(fruitsCopyUpdated);
   }
 
-  const handleChange = (event: any) => {
-    setNewFruit(event.target.value);
-  }
-
-  const handleSubmit = (event: any) => {
-    // Méthode à privilégier, plutôt que useRef, car useRef ne provoque pas de re-render
-    // Privilégier la méthode de synchronisation descendante / ascendante
-    // 0 empêcher le rechargement de la page
-    event.preventDefault();
-    // 1 définir une seconde partie du state (voir plus haut)
-    // 2 Récupérer le state initial fruits et créer une copie
+  const handleAdd = (addFruit: any) => {
     const fruitsAddCopy = [...fruits];
-    // 3 Ajouter le nouveau fruit en lui créant un id a partir de la date du jour
-    const id = new Date().getTime();
-    const name = newFruit;
-    fruitsAddCopy.push({ id, name });
-    // 4 Mettre à jour le state fruits
+    fruitsAddCopy.push(addFruit);
     setFruits(fruitsAddCopy);
-    // 5 Remettre à neuf le state newFruit dans l'input.
-    setNewFruit('');
   }
 
   return (
     <div>
       <h1>Liste de fruits :</h1>
       <ul>
-        {fruits.map(fruit => <li key={fruit.id}>{fruit.name}
-          <button onClick={() => handleDelete(fruit.id)}>X</button>
-        </li>)}
+        {fruits.map(fruit => <Fruit key={fruit.id} fruitInfo={fruit} onFruitDelete={handleDelete} />)}
       </ul>
-      <form action="submit">
-        <input type="text" value={newFruit} placeholder="Ajouter un fruit..." onChange={() => handleChange(event)} />
-        <button type="submit" onClick={handleSubmit}>+ fruit</button>
-      </form>
+      <AddFruit handleAdd={handleAdd} />
     </div>
   )
 }
