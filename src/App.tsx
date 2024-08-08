@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Fruit from './components/Fruit'
 import AddFruit from './components/AddFruit';
+import Button from './components/Button'
 import './App.css'
 
 export default function App() {
@@ -29,6 +30,17 @@ export default function App() {
     setFruits(fruitsAddCopy);
   }
 
+  const alertPop = () => {
+    alert('Vous avez ' + fruits.length + ' fruits dans votre liste');
+  }
+
+  const fruitCount = fruits.length > 1 ? 'Il y a ' + fruits.length + ' fruits dans la liste' : 'Il y a ' + fruits.length + ' fruit dans la liste';
+
+
+  const handleErase = () => {
+    setFruits([]);
+  }
+
   return (
     <div>
       <h1>Liste de fruits :</h1>
@@ -36,6 +48,8 @@ export default function App() {
         {fruits.map(fruit => <Fruit key={fruit.id} fruitInfo={fruit} onFruitDelete={handleDelete} />)}
       </ul>
       <AddFruit handleAdd={handleAdd} />
+      <Button text={fruitCount} onClick={alertPop} />
+      <Button text="Effacer la liste" onClick={handleErase} />
     </div>
   )
 }
