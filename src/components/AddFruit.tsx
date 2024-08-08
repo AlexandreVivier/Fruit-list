@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import Button from './Button';
 
 export default function AddFruit({handleAdd}: any) {
 
@@ -30,9 +31,9 @@ export default function AddFruit({handleAdd}: any) {
         setNewFruit('');
       }
     return (
-        <form action="submit">
+      <form action="submit">
         <input type="text" value={newFruit} placeholder="Ajouter un fruit..." onChange={() => handleChange(event)} />
-        <button type="submit" onClick={handleSubmit}>Valider</button>
+        <Button type="submit" onClick={handleSubmit} text="Ajouter" />
       </form>
     )
 }

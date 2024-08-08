@@ -45,7 +45,7 @@ export default function App() {
     <div>
       <h1>Liste de fruits :</h1>
       <ul>
-        {fruits.map(fruit => <Fruit key={fruit.id} fruitInfo={fruit} onFruitDelete={handleDelete} />)}
+        {fruits.map(fruit => <Fruit key={fruit.id} fruitInfo={fruit} onClick={handleDelete} />)}
       </ul>
       <AddFruit handleAdd={handleAdd} />
       <Button text={fruitCount} onClick={alertPop} />

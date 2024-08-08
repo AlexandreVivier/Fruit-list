@@ -1,4 +1,6 @@
-export default function Fruit({ fruitInfo, onFruitDelete }: any) {
+import Button from './Button';
+
+export default function Fruit({ fruitInfo, onClick }: any) {
 
     // 1 state
     // Comment passer les props à un composant enfant ?
@@ -10,7 +12,7 @@ export default function Fruit({ fruitInfo, onFruitDelete }: any) {
 
     return (
         <li>{fruitInfo.name}
-          <button onClick={() => onFruitDelete(fruitInfo.id)}>X</button>
+          <Button onClick={() => onClick(fruitInfo.id)} text="X" />
         </li>
         // <div>Fruit</div>
     )
