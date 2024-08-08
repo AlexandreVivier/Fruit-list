@@ -31,11 +31,10 @@ export default function App() {
   }
 
   const alertPop = () => {
-    alert('Vous avez ' + fruits.length + ' fruits dans votre liste');
+    alert(`Vous avez ${fruits.length} fruits dans votre liste`);
   }
 
   const fruitCount = fruits.length > 1 ? 'Il y a ' + fruits.length + ' fruits dans la liste' : 'Il y a ' + fruits.length + ' fruit dans la liste';
-
 
   const handleErase = () => {
     setFruits([]);
